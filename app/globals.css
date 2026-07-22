@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* Base design tokens. Additional themes are introduced in Stage 5. */
+/* Tailwind is retained from the recommended setup; components use CSS Modules. */
+
+/* Shared colour tokens allow every component to inherit the selected theme. */
 :root,
 [data-theme="day"] {
   --background: #f5f7fb;

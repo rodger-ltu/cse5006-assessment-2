@@ -1,9 +1,30 @@
+/* Fixed application frame */
 .siteLayout {
   display: flex;
   height: 100vh;
   height: 100dvh;
   flex-direction: column;
   overflow: hidden;
+}
+
+.skipLink {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--heading);
+  color: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  transform: translateY(0);
 }
 
 .contentFrame {
@@ -13,6 +34,7 @@
   min-height: 0;
 }
 
+/* Header and product identity */
 .header {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -125,6 +147,7 @@
   transform: translateY(-6px) rotate(-45deg);
 }
 
+/* Primary navigation and scrollable page content */
 .navigation {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -175,6 +198,10 @@
   scrollbar-gutter: stable;
 }
 
+.mainContent:focus {
+  outline: none;
+}
+
 .mainContentInner {
   width: min(100% - 2rem, 72rem);
   margin-inline: auto;
@@ -195,6 +222,7 @@
   font-size: 0.82rem;
 }
 
+/* Optional desktop side-navigation layout */
 @media (min-width: 761px) {
   .siteLayout[data-navigation-layout="side"] .contentFrame {
     display: grid;
@@ -245,6 +273,7 @@
   }
 }
 
+/* Compact navigation and footer layout */
 @media (max-width: 760px) {
   .headerContent {
     min-height: auto;

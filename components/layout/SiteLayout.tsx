@@ -43,6 +43,10 @@ export function SiteLayout({ children }: SiteLayoutProps) {
 
   return (
     <div className={styles.siteLayout} data-navigation-layout={navigationLayout}>
+      <a className={styles.skipLink} href="#main-content">
+        Skip to main content
+      </a>
+
       <Header
         isMenuOpen={isMenuOpen}
         onMenuToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
@@ -57,6 +61,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           className={styles.mainContent}
           id="main-content"
           ref={mainContentRef}
+          tabIndex={-1}
         >
           <div className={styles.mainContentInner}>{children}</div>
         </main>

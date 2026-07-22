@@ -66,6 +66,21 @@ main points to cover in the assessment video and written justification.
 - Kept the compact hamburger behaviour for both layouts so navigation remains
   usable when a permanent side panel would make the content too narrow.
 
+## Stage 7 — Accessibility and usability polish
+
+- Added a compact return action beside `Read more` on every feed card so users
+  can return to Home without scrolling back to the top of a long feed.
+- Kept the existing return link on each announcement detail page and extracted
+  both return links into one reusable component.
+- Added a keyboard skip link and a focusable main landmark so keyboard users
+  can bypass the repeated header and navigation controls.
+- Kept semantic landmarks, breadcrumbs, native form controls, visible focus
+  indicators and reduced-motion support across all themes and layouts.
+- Consolidated forward and return controls into one reusable action-link
+  component and removed small duplicated styling found during the code audit.
+- Made shared panel heading IDs unique and allowed page headers to omit
+  unnecessary descriptive text without rendering empty markup.
+
 ## Video points retained for later
 
 - Initial RSS-reader research found several email-like or visually plain

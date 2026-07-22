@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 
 import styles from "./ContentPanel.module.css";
 
@@ -8,9 +8,11 @@ type ContentPanelProps = {
 };
 
 export function ContentPanel({ children, title }: ContentPanelProps) {
+  const titleId = useId();
+
   return (
-    <section className={styles.panel} aria-labelledby="content-panel-title">
-      <h2 id="content-panel-title" className={styles.title}>
+    <section className={styles.panel} aria-labelledby={titleId}>
+      <h2 id={titleId} className={styles.title}>
         {title}
       </h2>
       <div className={styles.content}>{children}</div>

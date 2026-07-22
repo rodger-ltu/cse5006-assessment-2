@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { ActionLink } from "@/components/layout/ActionLink";
 import type { Announcement } from "@/data/announcements";
 
 import styles from "./AnnouncementDetail.module.css";
@@ -44,10 +43,12 @@ export function AnnouncementDetail({
         ))}
       </div>
 
-      <Link className={styles.backLink} href="/feeds">
-        <span aria-hidden="true">← </span>
-        Back to all announcements
-      </Link>
+      <div className={styles.backLinkRow}>
+        <ActionLink direction="back" href="/feeds">
+          Back to all announcements
+        </ActionLink>
+      </div>
+
     </article>
   );
 }

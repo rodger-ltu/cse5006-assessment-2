@@ -31,7 +31,6 @@ export default function HomePage() {
       <PageHeader
         eyebrow="Home"
         title="University announcements in one feed"
-        description="This frontend demonstrates how announcements from different university sources can be organised for quick access before RSS server integration is added in Assessment 2."
       />
 
       <div className={styles.homeLayout}>

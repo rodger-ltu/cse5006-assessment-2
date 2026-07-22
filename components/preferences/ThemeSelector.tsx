@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  availableThemes,
   type Theme,
   usePreferences,
 } from "./PreferencesProvider";
@@ -77,7 +76,7 @@ export function ThemeSelector() {
       </div>
 
       <p className={styles.currentTheme} aria-live="polite">
-        Current theme: {availableThemes.find((item) => item === theme)}
+        Current theme: {theme}
       </p>
     </fieldset>
   );

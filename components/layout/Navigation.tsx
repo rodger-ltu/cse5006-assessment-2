@@ -28,7 +28,9 @@ export function Navigation({ isMenuOpen, onNavigate }: NavigationProps) {
       aria-label="Primary navigation"
     >
       <div className={styles.navigationInner}>
-        <span className={styles.navigationHeading}>Navigation</span>
+        <span className={styles.navigationHeading} aria-hidden="true">
+          Navigation
+        </span>
         <ul className={styles.navigationList}>
           {navigationItems.map((item) => {
             const isCurrentPage =

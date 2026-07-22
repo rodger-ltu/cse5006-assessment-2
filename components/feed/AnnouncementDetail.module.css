@@ -42,18 +42,8 @@
   line-height: 1.8;
 }
 
-.backLink {
-  display: inline-block;
+.backLinkRow {
   margin-top: 0.5rem;
-  color: var(--accent-strong);
-  font-weight: 700;
-  text-underline-offset: 0.2em;
-}
-
-.backLink:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-  border-radius: 0.15rem;
 }
 
 @media (max-width: 680px) {

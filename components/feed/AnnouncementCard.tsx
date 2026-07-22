@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { ActionLink } from "@/components/layout/ActionLink";
 import type { Announcement } from "@/data/announcements";
 
 import styles from "./AnnouncementCard.module.css";
@@ -20,7 +19,9 @@ export function AnnouncementCard({ announcement }: AnnouncementCardProps) {
   return (
     <article className={styles.card} aria-labelledby={titleId}>
       <div className={styles.metadata}>
-        <span className={styles.category}>{announcement.category}</span>
+        <span className={`${styles.category} ${styles.cardEmphasis}`}>
+          {announcement.category}
+        </span>
         <time dateTime={announcement.publishedAt}>
           {dateFormatter.format(new Date(announcement.publishedAt))}
         </time>
@@ -35,14 +36,22 @@ export function AnnouncementCard({ announcement }: AnnouncementCardProps) {
       </p>
       <p className={styles.summary}>{announcement.summary}</p>
 
-      <Link
-        className={styles.readMoreLink}
-        href={`/feeds/${announcement.slug}`}
-        aria-label={`Read the complete announcement: ${announcement.title}`}
-      >
-        Read more
-        <span aria-hidden="true"> →</span>
-      </Link>
+      <div className={`${styles.actions} ${styles.cardEmphasis}`}>
+        <ActionLink
+          ariaLabel={`Read the complete announcement: ${announcement.title}`}
+          direction="forward"
+          href={`/feeds/${announcement.slug}`}
+        >
+          Read more
+        </ActionLink>
+        <ActionLink
+          ariaLabel="Back to latest announcements"
+          direction="back"
+          href="/"
+        >
+          Back
+        </ActionLink>
+      </div>
     </article>
   );
 }

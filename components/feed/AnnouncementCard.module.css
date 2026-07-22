@@ -38,22 +38,15 @@
   line-height: 1.7;
 }
 
-.readMoreLink {
-  display: inline-block;
-  color: var(--accent-strong);
-  font-weight: 700;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.readMoreLink:hover {
-  color: var(--accent);
-}
-
-.readMoreLink:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-  border-radius: 0.15rem;
+.cardEmphasis {
+  font-size: 1rem;
 }
 
 @media (max-width: 520px) {
