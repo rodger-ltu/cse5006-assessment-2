@@ -82,3 +82,7 @@ export const announcements: Announcement[] = [
     ],
   },
 ];
+
+export function getAnnouncementBySlug(slug: string) {
+  return announcements.find((announcement) => announcement.slug === slug);
+}

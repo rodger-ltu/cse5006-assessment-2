@@ -12,6 +12,10 @@ export default function FeedsPage() {
   return (
     <>
       <PageHeader
+        breadcrumbs={[
+          { href: "/", label: "Home" },
+          { label: "Feeds" },
+        ]}
         eyebrow="Feeds"
         title="Announcement feed"
         description="Announcements from different university sources will be presented here as a clear, scannable feed."

@@ -1,0 +1,47 @@
+# TONDAW development log
+
+This short log preserves the reasoning behind each staged Git commit and the
+main points to cover in the assessment video and written justification.
+
+## Stage 1 — Project foundation
+
+- Created the project with the required `npx create-next-app .` workflow.
+- Used the App Router, React, TypeScript and the recommended Next.js defaults.
+- Recorded a clean baseline before changing the generated interface.
+
+## Stage 2 — Reusable application shell
+
+- Added separate header, navigation, footer, page-header and content components.
+- Kept route files under `app/` and reusable interface code under `components/`.
+- Used a top navigation bar because it is explicit in the rubric and prominent
+  in the lecturer's examples. A selectable side layout is planned for Stage 6.
+- Included the required assessment title, student name and student number.
+
+## Stage 3 — Typed announcement feed
+
+- Replaced repeated page markup with a typed announcement array rendered by
+  reusable `AnnouncementFeed` and `AnnouncementCard` components.
+- Used university subjects, internships, events and volunteering as the sample
+  content because the workshop clarified the intended feed purpose.
+- Chose the name TONDAW: Timely Online Notices — Distributed Announcement Web.
+- Kept the data separate so an Assessment 2 API can replace it without
+  redesigning the interface components.
+
+## Stage 4 — LMS-style latest announcements and dynamic pages
+
+- Added a compact latest-announcements panel to the right of the Home content,
+  reflecting the LMS panel demonstrated in the workshop without copying Moodle.
+- Kept the detailed feed cards on the Feeds page so users can scan summaries,
+  sources, authors and dates before opening a complete announcement.
+- Added one reusable dynamic route for all announcement detail pages rather than
+  creating a separate hard-coded page for every item.
+- Added breadcrumbs to clarify location and provide a direct route back.
+
+## Video points retained for later
+
+- Initial RSS-reader research found several email-like or visually plain
+  interfaces; Inoreader provided the cleanest visual inspiration.
+- The top navigation follows the assessment emphasis and lecture examples. The
+  planned layout preference also retains the left-side navigation inspiration.
+- The compact Home panel and detailed Feeds page serve different scanning needs.
+- Saved preferences will demonstrate React state and browser persistence.

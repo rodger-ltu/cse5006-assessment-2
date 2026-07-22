@@ -11,6 +11,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
+        breadcrumbs={[
+          { href: "/", label: "Home" },
+          { label: "About" },
+        ]}
         eyebrow="About"
         title="About this project"
         description="Assessment 1 establishes the frontend experience for an RSS server that will later supply announcements to an LMS."
@@ -21,6 +25,10 @@ export default function AboutPage() {
           This stage is frontend only. It uses sample announcement content so
           the navigation, layout and usability can be evaluated before backend
           RSS processing is introduced in Assessment 2.
+        </p>
+        <p>
+          <strong>TONDAW</strong> stands for Timely Online Notices —
+          Distributed Announcement Web.
         </p>
         <p>
           <strong>Student:</strong> Rodger Herbert

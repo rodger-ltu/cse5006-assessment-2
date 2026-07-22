@@ -1,0 +1,37 @@
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.item + .item::before {
+  color: var(--border);
+  content: "/";
+}
+
+.link {
+  color: var(--accent-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.link:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 0.15rem;
+}
