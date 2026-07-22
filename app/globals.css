@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /* Base design tokens. Additional themes are introduced in Stage 5. */
-:root {
+:root,
+[data-theme="day"] {
   --background: #f5f7fb;
   --surface: #ffffff;
   --surface-muted: #f8f9fc;
@@ -12,6 +13,49 @@
   --accent: #4f46e5;
   --accent-strong: #3730a3;
   --focus-ring: #818cf8;
+  color-scheme: light;
+}
+
+[data-theme="night"] {
+  --background: #101722;
+  --surface: #182235;
+  --surface-muted: #202d42;
+  --heading: #f5f7fb;
+  --text: #dce3ed;
+  --text-muted: #a8b3c4;
+  --border: #34435a;
+  --accent: #9b8cf5;
+  --accent-strong: #c4b5fd;
+  --focus-ring: #a99cf7;
+  color-scheme: dark;
+}
+
+[data-theme="ocean"] {
+  --background: #eaf6f8;
+  --surface: #f8fcfd;
+  --surface-muted: #e1f2f5;
+  --heading: #063b4c;
+  --text: #174c5e;
+  --text-muted: #4e7180;
+  --border: #b8dbe2;
+  --accent: #087f8c;
+  --accent-strong: #065e68;
+  --focus-ring: #22aebe;
+  color-scheme: light;
+}
+
+[data-theme="terminal"] {
+  --background: #07110b;
+  --surface: #0b1a10;
+  --surface-muted: #102719;
+  --heading: #75ff9b;
+  --text: #bbf7cc;
+  --text-muted: #70a980;
+  --border: #214b2d;
+  --accent: #3dfc74;
+  --accent-strong: #86ffac;
+  --focus-ring: #75ff9b;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -34,6 +78,9 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 button,
@@ -41,4 +88,10 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }

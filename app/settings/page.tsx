@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { ThemeSelector } from "@/components/preferences/ThemeSelector";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -21,10 +22,7 @@ export default function SettingsPage() {
       />
 
       <ContentPanel title="Preferences">
-        <p>
-          The Day, Night, Ocean and Terminal theme controls are added in Stage
-          5.
-        </p>
+        <ThemeSelector />
       </ContentPanel>
     </>
   );

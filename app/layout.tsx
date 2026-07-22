@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import { PreferencesProvider } from "@/components/preferences/PreferencesProvider";
 
 import "./globals.css";
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="day">
       <body>
-        <SiteLayout>{children}</SiteLayout>
+        <SiteLayout>
+          <PreferencesProvider>{children}</PreferencesProvider>
+        </SiteLayout>
       </body>
     </html>
   );

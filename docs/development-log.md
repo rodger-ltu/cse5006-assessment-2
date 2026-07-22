@@ -37,6 +37,17 @@ main points to cover in the assessment video and written justification.
   creating a separate hard-coded page for every item.
 - Added breadcrumbs to clarify location and provide a direct route back.
 
+## Stage 5 — Themes and saved preference
+
+- Added Day, Night, Ocean and Terminal themes using shared CSS variables so the
+  same components remain reusable in every visual mode.
+- Used a React context provider for theme state instead of passing the setting
+  through every page and component.
+- Used native radio controls, visible focus indicators and descriptive labels
+  so theme selection works with keyboard and assistive technology.
+- Saved the selected theme in `localStorage` so the preference survives reloads
+  without requiring an Assessment 2 database or account system.
+
 ## Video points retained for later
 
 - Initial RSS-reader research found several email-like or visually plain
@@ -44,4 +55,4 @@ main points to cover in the assessment video and written justification.
 - The top navigation follows the assessment emphasis and lecture examples. The
   planned layout preference also retains the left-side navigation inspiration.
 - The compact Home panel and detailed Feeds page serve different scanning needs.
-- Saved preferences will demonstrate React state and browser persistence.
+- Saved preferences demonstrate React state and browser persistence.
