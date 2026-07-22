@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { usePreferences } from "@/components/preferences/PreferencesProvider";
 
@@ -15,7 +16,14 @@ type SiteLayoutProps = {
 
 export function SiteLayout({ children }: SiteLayoutProps) {
   const { navigationLayout } = usePreferences();
+  const pathname = usePathname();
+  const mainContentRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // The shared layout stays mounted, so reset its scroll pane on navigation.
+  useEffect(() => {
+    mainContentRef.current?.scrollTo({ top: 0 });
+  }, [pathname]);
 
   // Escape provides a predictable keyboard method for closing the compact menu.
   useEffect(() => {
@@ -45,8 +53,12 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           isMenuOpen={isMenuOpen}
           onNavigate={() => setIsMenuOpen(false)}
         />
-        <main className={styles.mainContent} id="main-content">
-          {children}
+        <main
+          className={styles.mainContent}
+          id="main-content"
+          ref={mainContentRef}
+        >
+          <div className={styles.mainContentInner}>{children}</div>
         </main>
       </div>
 

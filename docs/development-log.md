@@ -57,6 +57,10 @@ main points to cover in the assessment video and written justification.
   icon lines, `aria-expanded`, keyboard focus and Escape-key closing.
 - Added top and left-side navigation layouts to resolve the tension between the
   rubric's top-navigation examples and the Inoreader-inspired side navigation.
+- Integrated the desktop side navigation as a full-height visual rail rather
+  than a small floating card, making it feel like part of the application shell.
+- Kept the header, navigation and footer visible while the central page content
+  scrolls, matching the behaviour expected from an RSS reader application.
 - Reused the preferences context and `localStorage` so the selected layout is
   restored without duplicating state logic.
 - Kept the compact hamburger behaviour for both layouts so navigation remains

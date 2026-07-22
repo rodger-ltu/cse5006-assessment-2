@@ -27,28 +27,31 @@ export function Navigation({ isMenuOpen, onNavigate }: NavigationProps) {
       id="primary-navigation"
       aria-label="Primary navigation"
     >
-      <ul className={styles.navigationList}>
-        {navigationItems.map((item) => {
-          const isCurrentPage =
-            pathname === item.href ||
-            (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+      <div className={styles.navigationInner}>
+        <span className={styles.navigationHeading}>Navigation</span>
+        <ul className={styles.navigationList}>
+          {navigationItems.map((item) => {
+            const isCurrentPage =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
 
-          return (
-            <li key={item.href}>
-              <Link
-                className={`${styles.navigationLink} ${
-                  isCurrentPage ? styles.activeNavigationLink : ""
-                }`}
-                href={item.href}
-                aria-current={isCurrentPage ? "page" : undefined}
-                onClick={onNavigate}
-              >
-                {item.label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={item.href}>
+                <Link
+                  className={`${styles.navigationLink} ${
+                    isCurrentPage ? styles.activeNavigationLink : ""
+                  }`}
+                  href={item.href}
+                  aria-current={isCurrentPage ? "page" : undefined}
+                  onClick={onNavigate}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }
