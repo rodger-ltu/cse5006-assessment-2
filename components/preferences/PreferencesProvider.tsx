@@ -9,10 +9,14 @@ import {
 } from "react";
 
 export const availableThemes = ["day", "night", "ocean", "terminal"] as const;
+export const availableNavigationLayouts = ["top", "side"] as const;
 
 export type Theme = (typeof availableThemes)[number];
+export type NavigationLayout = (typeof availableNavigationLayouts)[number];
 
 type PreferencesContextValue = {
+  navigationLayout: NavigationLayout;
+  setNavigationLayout: (layout: NavigationLayout) => void;
   setTheme: (theme: Theme) => void;
   theme: Theme;
 };
@@ -22,11 +26,16 @@ type PreferencesProviderProps = {
 };
 
 const themeStorageKey = "tondaw-theme";
-const themeChangeEvent = "tondaw-theme-change";
+const navigationStorageKey = "tondaw-navigation-layout";
+const preferencesChangeEvent = "tondaw-preferences-change";
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
 
 function isTheme(value: string | null): value is Theme {
   return availableThemes.some((theme) => theme === value);
+}
+
+function isNavigationLayout(value: string | null): value is NavigationLayout {
+  return availableNavigationLayouts.some((layout) => layout === value);
 }
 
 function getSavedTheme(): Theme {
@@ -34,25 +43,39 @@ function getSavedTheme(): Theme {
   return isTheme(savedTheme) ? savedTheme : "day";
 }
 
+function getSavedNavigationLayout(): NavigationLayout {
+  const savedLayout = window.localStorage.getItem(navigationStorageKey);
+  return isNavigationLayout(savedLayout) ? savedLayout : "top";
+}
+
 function getServerTheme(): Theme {
   return "day";
 }
 
-function subscribeToTheme(onThemeChange: () => void) {
-  window.addEventListener("storage", onThemeChange);
-  window.addEventListener(themeChangeEvent, onThemeChange);
+function getServerNavigationLayout(): NavigationLayout {
+  return "top";
+}
+
+function subscribeToPreferences(onPreferenceChange: () => void) {
+  window.addEventListener("storage", onPreferenceChange);
+  window.addEventListener(preferencesChangeEvent, onPreferenceChange);
 
   return () => {
-    window.removeEventListener("storage", onThemeChange);
-    window.removeEventListener(themeChangeEvent, onThemeChange);
+    window.removeEventListener("storage", onPreferenceChange);
+    window.removeEventListener(preferencesChangeEvent, onPreferenceChange);
   };
 }
 
 export function PreferencesProvider({ children }: PreferencesProviderProps) {
   const theme = useSyncExternalStore(
-    subscribeToTheme,
+    subscribeToPreferences,
     getSavedTheme,
     getServerTheme,
+  );
+  const navigationLayout = useSyncExternalStore(
+    subscribeToPreferences,
+    getSavedNavigationLayout,
+    getServerNavigationLayout,
   );
 
   // Keep the document theme aligned with the preference stored by the browser.
@@ -63,11 +86,18 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
   function setTheme(themeChoice: Theme) {
     document.documentElement.dataset.theme = themeChoice;
     window.localStorage.setItem(themeStorageKey, themeChoice);
-    window.dispatchEvent(new Event(themeChangeEvent));
+    window.dispatchEvent(new Event(preferencesChangeEvent));
+  }
+
+  function setNavigationLayout(layoutChoice: NavigationLayout) {
+    window.localStorage.setItem(navigationStorageKey, layoutChoice);
+    window.dispatchEvent(new Event(preferencesChangeEvent));
   }
 
   return (
-    <PreferencesContext.Provider value={{ setTheme, theme }}>
+    <PreferencesContext.Provider
+      value={{ navigationLayout, setNavigationLayout, setTheme, theme }}
+    >
       {children}
     </PreferencesContext.Provider>
   );

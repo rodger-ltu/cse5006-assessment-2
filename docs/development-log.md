@@ -24,6 +24,9 @@ main points to cover in the assessment video and written justification.
 - Used university subjects, internships, events and volunteering as the sample
   content because the workshop clarified the intended feed purpose.
 - Chose the name TONDAW: Timely Online Notices — Distributed Announcement Web.
+- Considered CAMP (Campus Announcements and Messages Portal) and CALF (Campus
+  Announcements Live Feed), then selected TONDAW because it describes both the
+  user benefit and the planned distributed feed structure.
 - Kept the data separate so an Assessment 2 API can replace it without
   redesigning the interface components.
 
@@ -48,11 +51,22 @@ main points to cover in the assessment video and written justification.
 - Saved the selected theme in `localStorage` so the preference survives reloads
   without requiring an Assessment 2 database or account system.
 
+## Stage 6 — Responsive and selectable navigation
+
+- Added an animated hamburger button for compact screens, including transformed
+  icon lines, `aria-expanded`, keyboard focus and Escape-key closing.
+- Added top and left-side navigation layouts to resolve the tension between the
+  rubric's top-navigation examples and the Inoreader-inspired side navigation.
+- Reused the preferences context and `localStorage` so the selected layout is
+  restored without duplicating state logic.
+- Kept the compact hamburger behaviour for both layouts so navigation remains
+  usable when a permanent side panel would make the content too narrow.
+
 ## Video points retained for later
 
 - Initial RSS-reader research found several email-like or visually plain
   interfaces; Inoreader provided the cleanest visual inspiration.
 - The top navigation follows the assessment emphasis and lecture examples. The
-  planned layout preference also retains the left-side navigation inspiration.
+  layout preference also retains the left-side navigation inspiration.
 - The compact Home panel and detailed Feeds page serve different scanning needs.
 - Saved preferences demonstrate React state and browser persistence.

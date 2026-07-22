@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { NavigationLayoutSelector } from "@/components/preferences/NavigationLayoutSelector";
 import { ThemeSelector } from "@/components/preferences/ThemeSelector";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function SettingsPage() {
 
       <ContentPanel title="Preferences">
         <ThemeSelector />
+        <NavigationLayoutSelector />
       </ContentPanel>
     </>
   );

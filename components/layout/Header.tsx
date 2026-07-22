@@ -1,9 +1,13 @@
 import Link from "next/link";
 
-import { Navigation } from "./Navigation";
 import styles from "./SiteLayout.module.css";
 
-export function Header() {
+type HeaderProps = {
+  isMenuOpen: boolean;
+  onMenuToggle: () => void;
+};
+
+export function Header({ isMenuOpen, onMenuToggle }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -26,9 +30,23 @@ export function Header() {
         <p className={styles.assessmentTitle}>
           Assessment 1: Frontend Design and Usability
         </p>
-      </div>
 
-      <Navigation />
+        <button
+          className={styles.menuButton}
+          data-open={isMenuOpen}
+          type="button"
+          aria-controls="primary-navigation"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={onMenuToggle}
+        >
+          <span className={styles.menuIcon} aria-hidden="true">
+            <span className={styles.menuLine} />
+            <span className={styles.menuLine} />
+            <span className={styles.menuLine} />
+          </span>
+        </button>
+      </div>
     </header>
   );
 }

@@ -5,6 +5,12 @@
   border: 0;
 }
 
+.secondaryFieldset {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
 .legend {
   padding: 0;
   color: var(--heading);
@@ -34,6 +40,10 @@
   border-radius: 0.75rem;
   background: var(--surface-muted);
   cursor: pointer;
+}
+
+.optionWithoutPreview {
+  grid-template-columns: auto 1fr;
 }
 
 .option:hover,

@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="day">
       <body>
-        <SiteLayout>
-          <PreferencesProvider>{children}</PreferencesProvider>
-        </SiteLayout>
+        <PreferencesProvider>
+          <SiteLayout>{children}</SiteLayout>
+        </PreferencesProvider>
       </body>
     </html>
   );
