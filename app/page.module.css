@@ -1,0 +1,54 @@
+.linkGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pageLink {
+  display: flex;
+  min-height: 9rem;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.pageLink:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.pageLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.linkTitle {
+  color: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.linkDescription {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .linkGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pageLink {
+    min-height: auto;
+  }
+}

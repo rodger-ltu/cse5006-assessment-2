@@ -1,0 +1,136 @@
+.siteLayout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.headerContent,
+.navigationList,
+.mainContent,
+.footerContent {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.headerContent {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--heading);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  border-radius: 0.65rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.brand:focus-visible,
+.navigationLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.assessmentTitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.navigation {
+  border-top: 1px solid var(--border);
+}
+
+.navigationList {
+  display: flex;
+  gap: 0.25rem;
+  margin-block: 0;
+  padding: 0.45rem 0;
+  list-style: none;
+}
+
+.navigationLink {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.navigationLink:hover {
+  background: var(--surface-muted);
+  color: var(--heading);
+}
+
+.activeNavigationLink {
+  background: var(--surface-muted);
+  color: var(--accent-strong);
+}
+
+.mainContent {
+  flex: 1;
+  padding-block: clamp(2.5rem, 7vw, 5rem);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.footerContent {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .headerContent {
+    min-height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-block: 1rem;
+  }
+
+  .assessmentTitle {
+    padding-left: 3.15rem;
+  }
+
+  .navigationList {
+    overflow-x: auto;
+  }
+
+  .footerContent {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 1rem;
+  }
+}
