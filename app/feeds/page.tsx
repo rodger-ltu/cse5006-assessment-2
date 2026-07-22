@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import { ContentPanel } from "@/components/content/ContentPanel";
+import { AnnouncementFeed } from "@/components/feed/AnnouncementFeed";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { announcements } from "@/data/announcements";
 
 export const metadata: Metadata = {
   title: "Feeds",
@@ -16,12 +17,7 @@ export default function FeedsPage() {
         description="Announcements from different university sources will be presented here as a clear, scannable feed."
       />
 
-      <ContentPanel title="Feed structure">
-        <p>
-          Typed sample data and reusable announcement components are added in
-          the next stage.
-        </p>
-      </ContentPanel>
+      <AnnouncementFeed announcements={announcements} />
     </>
   );
 }

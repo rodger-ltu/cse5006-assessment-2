@@ -7,11 +7,20 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <Link className={styles.brand} href="/" aria-label="RSS to LMS home">
+        <Link
+          className={styles.brand}
+          href="/"
+          aria-label="TONDAW home: Timely Online Notices, Distributed Announcement Web"
+        >
           <span className={styles.brandMark} aria-hidden="true">
-            RSS
+            T
           </span>
-          <span>RSS to LMS</span>
+          <span className={styles.brandText} aria-hidden="true">
+            <span>TONDAW</span>
+            <span className={styles.brandExpansion}>
+              Timely Online Notices · Distributed Announcement Web
+            </span>
+          </span>
         </Link>
 
         <p className={styles.assessmentTitle}>

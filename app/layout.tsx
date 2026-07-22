@@ -6,8 +6,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "RSS to LMS",
-    template: "%s | RSS to LMS",
+    default: "TONDAW",
+    template: "%s | TONDAW",
   },
   description:
     "Assessment 1 frontend for organising university announcements through an RSS-to-LMS workflow.",

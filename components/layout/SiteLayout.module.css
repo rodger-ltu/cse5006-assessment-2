@@ -46,6 +46,19 @@
   letter-spacing: 0.04em;
 }
 
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.brandExpansion {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
 .brand:focus-visible,
 .navigationLink:focus-visible {
   outline: 3px solid var(--focus-ring);
