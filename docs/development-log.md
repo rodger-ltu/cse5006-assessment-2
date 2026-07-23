@@ -81,6 +81,17 @@ main points to cover in the assessment video and written justification.
 - Made shared panel heading IDs unique and allowed page headers to omit
   unnecessary descriptive text without rendering empty markup.
 
+## Stage 8 — Home page and final interface hierarchy
+
+- Removed repeated feed labels so the breadcrumb establishes location and one
+  page heading identifies the complete announcement list.
+- Added a concise first-visit guide to Home with direct links to the core pages,
+  then replaced it with a featured announcement after dismissal.
+- Saved the guide choice with the existing browser-preferences system and added
+  a Settings control so users can restore the introduction at any time.
+- Preserved the approved latest-announcements panel, themes and selectable
+  navigation layouts while making Home useful during normal operation.
+
 ## Video points retained for later
 
 - Initial RSS-reader research found several email-like or visually plain

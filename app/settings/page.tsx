@@ -4,6 +4,7 @@ import { ContentPanel } from "@/components/content/ContentPanel";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { NavigationLayoutSelector } from "@/components/preferences/NavigationLayoutSelector";
 import { ThemeSelector } from "@/components/preferences/ThemeSelector";
+import { WelcomeGuideControl } from "@/components/preferences/WelcomeGuideControl";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -25,6 +26,7 @@ export default function SettingsPage() {
       <ContentPanel title="Preferences">
         <ThemeSelector />
         <NavigationLayoutSelector />
+        <WelcomeGuideControl />
       </ContentPanel>
     </>
   );

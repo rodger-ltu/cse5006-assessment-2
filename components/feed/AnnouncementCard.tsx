@@ -5,6 +5,7 @@ import styles from "./AnnouncementCard.module.css";
 
 type AnnouncementCardProps = {
   announcement: Announcement;
+  showBackAction?: boolean;
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en-AU", {
@@ -13,7 +14,10 @@ const dateFormatter = new Intl.DateTimeFormat("en-AU", {
   year: "numeric",
 });
 
-export function AnnouncementCard({ announcement }: AnnouncementCardProps) {
+export function AnnouncementCard({
+  announcement,
+  showBackAction = true,
+}: AnnouncementCardProps) {
   const titleId = `announcement-${announcement.slug}`;
 
   return (
@@ -44,13 +48,15 @@ export function AnnouncementCard({ announcement }: AnnouncementCardProps) {
         >
           Read more
         </ActionLink>
-        <ActionLink
-          ariaLabel="Back to latest announcements"
-          direction="back"
-          href="/"
-        >
-          Back
-        </ActionLink>
+        {showBackAction && (
+          <ActionLink
+            ariaLabel="Back to latest announcements"
+            direction="back"
+            href="/"
+          >
+            Back
+          </ActionLink>
+        )}
       </div>
     </article>
   );

@@ -11,16 +11,7 @@ export function AnnouncementFeed({
   announcements,
 }: AnnouncementFeedProps) {
   return (
-    <section aria-labelledby="announcement-feed-title">
-      <div className={styles.headingRow}>
-        <h2 className={styles.heading} id="announcement-feed-title">
-          All announcements
-        </h2>
-        <span className={styles.count}>
-          {announcements.length} sample items
-        </span>
-      </div>
-
+    <section aria-label="Announcement list">
       <div className={styles.feed}>
         {announcements.map((announcement) => (
           <AnnouncementCard

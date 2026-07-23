@@ -15,7 +15,10 @@ export type Theme = (typeof availableThemes)[number];
 export type NavigationLayout = (typeof availableNavigationLayouts)[number];
 
 type PreferencesContextValue = {
+  dismissWelcomeGuide: () => void;
+  isWelcomeGuideDismissed: boolean;
   navigationLayout: NavigationLayout;
+  restoreWelcomeGuide: () => void;
   setNavigationLayout: (layout: NavigationLayout) => void;
   setTheme: (theme: Theme) => void;
   theme: Theme;
@@ -27,6 +30,7 @@ type PreferencesProviderProps = {
 
 const themeStorageKey = "tondaw-theme";
 const navigationStorageKey = "tondaw-navigation-layout";
+const welcomeGuideStorageKey = "tondaw-welcome-guide-dismissed";
 const preferencesChangeEvent = "tondaw-preferences-change";
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
 
@@ -48,12 +52,20 @@ function getSavedNavigationLayout(): NavigationLayout {
   return isNavigationLayout(savedLayout) ? savedLayout : "top";
 }
 
+function getSavedWelcomeGuideDismissed(): boolean {
+  return window.localStorage.getItem(welcomeGuideStorageKey) === "true";
+}
+
 function getServerTheme(): Theme {
   return "day";
 }
 
 function getServerNavigationLayout(): NavigationLayout {
   return "top";
+}
+
+function getServerWelcomeGuideDismissed(): boolean {
+  return false;
 }
 
 function subscribeToPreferences(onPreferenceChange: () => void) {
@@ -77,6 +89,11 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
     getSavedNavigationLayout,
     getServerNavigationLayout,
   );
+  const isWelcomeGuideDismissed = useSyncExternalStore(
+    subscribeToPreferences,
+    getSavedWelcomeGuideDismissed,
+    getServerWelcomeGuideDismissed,
+  );
 
   // Keep the document theme aligned with the preference stored by the browser.
   useEffect(() => {
@@ -94,9 +111,27 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
     window.dispatchEvent(new Event(preferencesChangeEvent));
   }
 
+  function dismissWelcomeGuide() {
+    window.localStorage.setItem(welcomeGuideStorageKey, "true");
+    window.dispatchEvent(new Event(preferencesChangeEvent));
+  }
+
+  function restoreWelcomeGuide() {
+    window.localStorage.removeItem(welcomeGuideStorageKey);
+    window.dispatchEvent(new Event(preferencesChangeEvent));
+  }
+
   return (
     <PreferencesContext.Provider
-      value={{ navigationLayout, setNavigationLayout, setTheme, theme }}
+      value={{
+        dismissWelcomeGuide,
+        isWelcomeGuideDismissed,
+        navigationLayout,
+        restoreWelcomeGuide,
+        setNavigationLayout,
+        setTheme,
+        theme,
+      }}
     >
       {children}
     </PreferencesContext.Provider>

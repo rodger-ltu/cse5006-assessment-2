@@ -16,9 +16,7 @@ export default function FeedsPage() {
           { href: "/", label: "Home" },
           { label: "Feeds" },
         ]}
-        eyebrow="Feeds"
-        title="Announcement feed"
-        description="Announcements from different university sources will be presented here as a clear, scannable feed."
+        title="All announcements"
       />
 
       <AnnouncementFeed announcements={announcements} />
