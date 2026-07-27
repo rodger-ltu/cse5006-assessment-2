@@ -1,4 +1,4 @@
-import { LatestAnnouncements } from "@/components/feed/LatestAnnouncements";
+import { OtherAnnouncementsPanel } from "@/components/feed/OtherAnnouncementsPanel";
 import { HomePrimaryContent } from "@/components/home/HomePrimaryContent";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { announcements } from "@/data/announcements";
@@ -6,19 +6,27 @@ import { announcements } from "@/data/announcements";
 import styles from "./page.module.css";
 
 export default function HomePage() {
-  const featuredAnnouncement = announcements.at(-1) ?? announcements[0];
+  const currentSubjectAnnouncement = announcements.find(
+    (announcement) => announcement.sourceGroup === "current",
+  );
+  const otherAnnouncements = announcements.filter(
+    (announcement) => announcement.sourceGroup === "other",
+  );
+
+  if (!currentSubjectAnnouncement) {
+    return null;
+  }
 
   return (
     <>
-      <PageHeader
-        eyebrow="Home"
-        title="University announcement feed"
-      />
+      <PageHeader compact title="Your announcements" />
 
       <div className={styles.homeLayout}>
-        <HomePrimaryContent featuredAnnouncement={featuredAnnouncement} />
+        <HomePrimaryContent
+          currentSubjectAnnouncement={currentSubjectAnnouncement}
+        />
 
-        <LatestAnnouncements announcements={announcements} />
+        <OtherAnnouncementsPanel announcements={otherAnnouncements} />
       </div>
     </>
   );

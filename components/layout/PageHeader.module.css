@@ -20,6 +20,17 @@
   letter-spacing: -0.035em;
 }
 
+.pageHeader[data-compact="true"] .title {
+  color: var(--accent-strong);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+}
+
+.pageHeader[data-compact="true"] {
+  max-width: none;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 .description {
   max-width: 46rem;
   margin: 1rem 0 0;

@@ -1,5 +1,6 @@
 .homeLayout {
   display: grid;
+  align-items: stretch;
   grid-template-columns: minmax(0, 2fr) minmax(17rem, 1fr);
   gap: 1.25rem;
 }

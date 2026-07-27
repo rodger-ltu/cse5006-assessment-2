@@ -1,39 +1,47 @@
 import { ActionLink } from "@/components/layout/ActionLink";
-import type { Announcement } from "@/data/announcements";
+import type {
+  Announcement,
+  AnnouncementReturnContext,
+} from "@/data/announcements";
 
+import { formatAnnouncementDate } from "./announcementDate";
 import styles from "./AnnouncementCard.module.css";
 
 type AnnouncementCardProps = {
   announcement: Announcement;
+  embedded?: boolean;
+  returnContext?: AnnouncementReturnContext;
   showBackAction?: boolean;
 };
 
-const dateFormatter = new Intl.DateTimeFormat("en-AU", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
-
 export function AnnouncementCard({
   announcement,
+  embedded = false,
+  returnContext = "all",
   showBackAction = true,
 }: AnnouncementCardProps) {
   const titleId = `announcement-${announcement.slug}`;
+  const Title = embedded ? "h3" : "h2";
+  const detailHref = `/feeds/${announcement.slug}?from=${returnContext}`;
 
   return (
-    <article className={styles.card} aria-labelledby={titleId}>
+    <article
+      className={styles.card}
+      data-embedded={embedded}
+      aria-labelledby={titleId}
+    >
       <div className={styles.metadata}>
         <span className={`${styles.category} ${styles.cardEmphasis}`}>
           {announcement.category}
         </span>
         <time dateTime={announcement.publishedAt}>
-          {dateFormatter.format(new Date(announcement.publishedAt))}
+          {formatAnnouncementDate(announcement.publishedAt)}
         </time>
       </div>
 
-      <h2 className={styles.title} id={titleId}>
+      <Title className={styles.title} id={titleId}>
         {announcement.title}
-      </h2>
+      </Title>
 
       <p className={styles.source}>
         {announcement.source} · {announcement.author}
@@ -44,16 +52,12 @@ export function AnnouncementCard({
         <ActionLink
           ariaLabel={`Read the complete announcement: ${announcement.title}`}
           direction="forward"
-          href={`/feeds/${announcement.slug}`}
+          href={detailHref}
         >
           Read more
         </ActionLink>
         {showBackAction && (
-          <ActionLink
-            ariaLabel="Back to latest announcements"
-            direction="back"
-            href="/"
-          >
+          <ActionLink ariaLabel="Back to Home" direction="back" href="/">
             Back
           </ActionLink>
         )}

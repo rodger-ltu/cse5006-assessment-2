@@ -1,20 +1,19 @@
 import { ActionLink } from "@/components/layout/ActionLink";
 import type { Announcement } from "@/data/announcements";
 
+import { formatAnnouncementDate } from "./announcementDate";
 import styles from "./AnnouncementDetail.module.css";
 
 type AnnouncementDetailProps = {
   announcement: Announcement;
+  returnHref: string;
+  returnLabel: string;
 };
-
-const dateFormatter = new Intl.DateTimeFormat("en-AU", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
 
 export function AnnouncementDetail({
   announcement,
+  returnHref,
+  returnLabel,
 }: AnnouncementDetailProps) {
   return (
     <article className={styles.article}>
@@ -23,7 +22,7 @@ export function AnnouncementDetail({
           <dt>Published</dt>
           <dd>
             <time dateTime={announcement.publishedAt}>
-              {dateFormatter.format(new Date(announcement.publishedAt))}
+              {formatAnnouncementDate(announcement.publishedAt)}
             </time>
           </dd>
         </div>
@@ -44,11 +43,10 @@ export function AnnouncementDetail({
       </div>
 
       <div className={styles.backLinkRow}>
-        <ActionLink direction="back" href="/feeds">
-          Back to all announcements
+        <ActionLink direction="back" href={returnHref}>
+          {returnLabel}
         </ActionLink>
       </div>
-
     </article>
   );
 }

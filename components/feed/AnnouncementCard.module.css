@@ -5,6 +5,13 @@
   background: var(--surface);
 }
 
+.card[data-embedded="true"] {
+  padding: 1.25rem 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
 .metadata {
   display: flex;
   align-items: center;

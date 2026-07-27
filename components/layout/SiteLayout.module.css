@@ -72,7 +72,7 @@
   place-items: center;
   border-radius: 0.65rem;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
 }
@@ -194,7 +194,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-block: clamp(2.5rem, 7vw, 5rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
   scrollbar-gutter: stable;
 }
 
@@ -244,7 +244,7 @@
     top: 1rem;
     width: auto;
     margin: 0;
-    padding: clamp(2.5rem, 7vw, 5rem) 1.25rem 2rem 0;
+    padding: clamp(2rem, 5vw, 3.5rem) 1.25rem 2rem 0;
   }
 
   .siteLayout[data-navigation-layout="side"] .navigationHeading {

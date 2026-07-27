@@ -86,11 +86,17 @@ main points to cover in the assessment video and written justification.
 - Removed repeated feed labels so the breadcrumb establishes location and one
   page heading identifies the complete announcement list.
 - Added a concise first-visit guide to Home with direct links to the core pages,
-  then replaced it with a featured announcement after dismissal.
+  then replaced it with the current-subject announcement after dismissal.
 - Saved the guide choice with the existing browser-preferences system and added
   a Settings control so users can restore the introduction at any time.
-- Preserved the approved latest-announcements panel, themes and selectable
-  navigation layouts while making Home useful during normal operation.
+- Preserved the compact announcements panel, themes and selectable navigation
+  layouts while making Home useful during normal operation.
+- Matched the current-subject and other-announcement containers by sharing one
+  panel style, giving the two Home columns consistent headings and equal heights.
+- Lightened the Day-theme accent while retaining WCAG AA contrast for the brand
+  mark and primary buttons.
+- Replaced the generated README with project-specific setup, structure, scope
+  and quality-check information after the final code audit.
 
 ## Video points retained for later
 
@@ -100,3 +106,22 @@ main points to cover in the assessment video and written justification.
   layout preference also retains the left-side navigation inspiration.
 - The compact Home panel and detailed Feeds page serve different scanning needs.
 - Saved preferences demonstrate React state and browser persistence.
+
+## Source grouping refinement
+
+- Replaced the generic University notices heading with the smaller Your
+  announcements heading while retaining a clear page-level heading for
+  accessibility.
+- Centred the Home heading, applied the shared accent-strong theme variable and
+  reduced the common page spacing so the interface sits higher without adding
+  a decorative container or theme-specific component rules.
+- Replaced the ambiguous Featured and Latest labels with source-based labels:
+  Current subject and Other subjects & services.
+- Added All announcements, Current subject and Other subjects & services filters
+  to the Feeds page while continuing to render every result through the shared
+  AnnouncementFeed and AnnouncementCard components.
+- Preserved each user journey by returning detail-page visitors to Home or to
+  the feed filter from which they opened the announcement.
+- Reused one date-formatting helper across feed cards, compact lists and detail
+  pages, and corrected the selected-filter background to use an existing theme
+  token.

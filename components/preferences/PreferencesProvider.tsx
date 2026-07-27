@@ -42,6 +42,7 @@ function isNavigationLayout(value: string | null): value is NavigationLayout {
   return availableNavigationLayouts.some((layout) => layout === value);
 }
 
+// Browser snapshots allow React to respond to saved preference changes.
 function getSavedTheme(): Theme {
   const savedTheme = window.localStorage.getItem(themeStorageKey);
   return isTheme(savedTheme) ? savedTheme : "day";

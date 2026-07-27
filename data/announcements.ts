@@ -1,3 +1,7 @@
+export type AnnouncementSourceGroup = "current" | "other";
+export type FeedFilter = "all" | AnnouncementSourceGroup;
+export type AnnouncementReturnContext = FeedFilter | "home";
+
 export type Announcement = {
   author: string;
   category: string;
@@ -5,6 +9,7 @@ export type Announcement = {
   publishedAt: string;
   slug: string;
   source: string;
+  sourceGroup: AnnouncementSourceGroup;
   summary: string;
   title: string;
 };
@@ -15,6 +20,7 @@ export const announcements: Announcement[] = [
     slug: "cloud-application-workshop-resources",
     title: "Cloud application workshop resources available",
     source: "CSE5006 Cloud-Based Web Application",
+    sourceGroup: "current",
     author: "CSE5006 Teaching Team",
     category: "Subject update",
     publishedAt: "2026-07-21T09:30:00+10:00",
@@ -29,6 +35,7 @@ export const announcements: Announcement[] = [
     slug: "postgraduate-internship-briefing",
     title: "Postgraduate industry internship briefing",
     source: "Careers and Opportunities",
+    sourceGroup: "other",
     author: "Work Integrated Learning Team",
     category: "Internship",
     publishedAt: "2026-07-19T14:00:00+10:00",
@@ -43,6 +50,7 @@ export const announcements: Announcement[] = [
     slug: "cybersecurity-lab-schedule-update",
     title: "Cybersecurity laboratory schedule updated",
     source: "Cybersecurity Subjects",
+    sourceGroup: "other",
     author: "Cybersecurity Teaching Team",
     category: "Timetable",
     publishedAt: "2026-07-17T11:15:00+10:00",
@@ -57,6 +65,7 @@ export const announcements: Announcement[] = [
     slug: "student-hackathon-registrations",
     title: "Student hackathon registrations now open",
     source: "Student Innovation Hub",
+    sourceGroup: "other",
     author: "Innovation and Entrepreneurship Team",
     category: "Event",
     publishedAt: "2026-07-15T16:45:00+10:00",
@@ -71,6 +80,7 @@ export const announcements: Announcement[] = [
     slug: "volunteer-mentor-program",
     title: "Applications open for volunteer student mentors",
     source: "Student Support Services",
+    sourceGroup: "other",
     author: "Peer Learning Team",
     category: "Volunteering",
     publishedAt: "2026-07-13T10:00:00+10:00",
@@ -85,4 +95,14 @@ export const announcements: Announcement[] = [
 
 export function getAnnouncementBySlug(slug: string) {
   return announcements.find((announcement) => announcement.slug === slug);
+}
+
+export function getAnnouncementsByFilter(filter: FeedFilter) {
+  if (filter === "all") {
+    return announcements;
+  }
+
+  return announcements.filter(
+    (announcement) => announcement.sourceGroup === filter,
+  );
 }

@@ -18,16 +18,11 @@
   font-weight: 700;
 }
 
-.helpText {
-  margin: 0.4rem 0 1.25rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
 .options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
+  margin-top: 1rem;
 }
 
 .option {
@@ -87,7 +82,7 @@
 }
 
 .preview[data-theme-preview="terminal"] {
-  background: linear-gradient(135deg, #07110b 50%, #3dfc74 50%);
+  background: linear-gradient(135deg, #07110b 50%, #52d575 50%);
 }
 
 .optionText {
@@ -112,6 +107,33 @@
   color: var(--text-muted);
   font-size: 0.82rem;
   text-transform: capitalize;
+}
+
+.restoreButton {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.6rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.restoreButton:hover {
+  background: var(--accent-strong);
+}
+
+.restoreButton:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.restoreButton:disabled {
+  border-color: var(--border);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  cursor: default;
 }
 
 @media (max-width: 680px) {

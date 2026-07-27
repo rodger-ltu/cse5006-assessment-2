@@ -4,13 +4,14 @@ import Link from "next/link";
 
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { AnnouncementCard } from "@/components/feed/AnnouncementCard";
+import panelStyles from "@/components/feed/FeedPanel.module.css";
 import { usePreferences } from "@/components/preferences/PreferencesProvider";
 import type { Announcement } from "@/data/announcements";
 
 import styles from "./HomePrimaryContent.module.css";
 
 type HomePrimaryContentProps = {
-  featuredAnnouncement: Announcement;
+  currentSubjectAnnouncement: Announcement;
 };
 
 const guideLinks = [
@@ -24,18 +25,25 @@ const guideLinks = [
 ];
 
 export function HomePrimaryContent({
-  featuredAnnouncement,
+  currentSubjectAnnouncement,
 }: HomePrimaryContentProps) {
   const { dismissWelcomeGuide, isWelcomeGuideDismissed } = usePreferences();
 
   if (isWelcomeGuideDismissed) {
     return (
-      <section aria-labelledby="featured-announcement-title">
-        <h2 className={styles.sectionTitle} id="featured-announcement-title">
-          Featured announcement
-        </h2>
+      <section
+        className={panelStyles.panel}
+        aria-labelledby="current-subject-title"
+      >
+        <div className={panelStyles.headingRow}>
+          <h2 className={panelStyles.heading} id="current-subject-title">
+            Current subject
+          </h2>
+        </div>
         <AnnouncementCard
-          announcement={featuredAnnouncement}
+          announcement={currentSubjectAnnouncement}
+          embedded
+          returnContext="home"
           showBackAction={false}
         />
       </section>

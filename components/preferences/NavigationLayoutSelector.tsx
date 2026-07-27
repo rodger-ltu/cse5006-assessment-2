@@ -31,9 +31,6 @@ export function NavigationLayoutSelector() {
   return (
     <fieldset className={`${styles.fieldset} ${styles.secondaryFieldset}`}>
       <legend className={styles.legend}>Choose a navigation layout</legend>
-      <p className={styles.helpText}>
-        Compact screens use the hamburger menu for either selection.
-      </p>
 
       <div className={styles.options}>
         {layoutOptions.map((option) => (

@@ -1,9 +1,3 @@
-.sectionTitle {
-  margin: 0 0 1rem;
-  color: var(--heading);
-  font-size: 1.25rem;
-}
-
 .guideList {
   display: grid;
   gap: 0.65rem;
@@ -17,25 +11,22 @@
   text-underline-offset: 0.2em;
 }
 
-.dismissButton,
-.restoreButton {
+.dismissButton {
   padding: 0.7rem 1rem;
   border: 1px solid var(--accent);
   border-radius: 0.6rem;
   background: var(--accent);
-  color: var(--background);
+  color: var(--on-accent);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
-.dismissButton:hover,
-.restoreButton:hover {
+.dismissButton:hover {
   background: var(--accent-strong);
 }
 
 .dismissButton:focus-visible,
-.restoreButton:focus-visible,
 .guideList a:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
@@ -45,16 +36,4 @@
   margin-top: 0.75rem;
   color: var(--text-muted);
   font-size: 0.82rem;
-}
-
-.settingsText {
-  margin: 0 0 1rem;
-  color: var(--text-muted);
-}
-
-.restoreButton:disabled {
-  border-color: var(--border);
-  background: var(--surface-muted);
-  color: var(--text-muted);
-  cursor: default;
 }

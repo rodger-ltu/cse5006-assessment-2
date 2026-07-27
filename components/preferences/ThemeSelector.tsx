@@ -41,9 +41,6 @@ export function ThemeSelector() {
   return (
     <fieldset className={styles.fieldset}>
       <legend className={styles.legend}>Choose a theme</legend>
-      <p className={styles.helpText}>
-        Your selection is saved in this browser and restored when you return.
-      </p>
 
       <div className={styles.options}>
         {themeOptions.map((option) => (
