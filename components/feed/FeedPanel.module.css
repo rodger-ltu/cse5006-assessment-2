@@ -20,3 +20,17 @@
   color: var(--heading);
   font-size: 1.05rem;
 }
+
+.actionLink {
+  flex: none;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-underline-offset: 0.2em;
+}
+
+.actionLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 0.15rem;
+}

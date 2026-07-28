@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { AnnouncementCard } from "@/components/feed/AnnouncementCard";
-import panelStyles from "@/components/feed/FeedPanel.module.css";
+import { FeedPanel } from "@/components/feed/FeedPanel";
 import { usePreferences } from "@/components/preferences/PreferencesProvider";
 import type { Announcement } from "@/data/announcements";
 
@@ -31,22 +31,18 @@ export function HomePrimaryContent({
 
   if (isWelcomeGuideDismissed) {
     return (
-      <section
-        className={panelStyles.panel}
-        aria-labelledby="current-subject-title"
+      <FeedPanel
+        heading="Current subject"
+        headingId="current-subject-title"
+        viewAllHref="/feeds?filter=current"
       >
-        <div className={panelStyles.headingRow}>
-          <h2 className={panelStyles.heading} id="current-subject-title">
-            Current subject
-          </h2>
-        </div>
         <AnnouncementCard
           announcement={currentSubjectAnnouncement}
           embedded
           returnContext="home"
           showBackAction={false}
         />
-      </section>
+      </FeedPanel>
     );
   }
 
