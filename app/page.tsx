@@ -19,7 +19,7 @@ export default function HomePage() {
 
   return (
     <>
-      <PageHeader compact title="Your announcements" />
+      <PageHeader title="Announcements" />
 
       <div className={styles.homeLayout}>
         <HomePrimaryContent

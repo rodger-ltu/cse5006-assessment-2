@@ -3,7 +3,6 @@ import styles from "./PageHeader.module.css";
 
 type PageHeaderProps = {
   breadcrumbs?: BreadcrumbItem[];
-  compact?: boolean;
   description?: string;
   eyebrow?: string;
   title: string;
@@ -11,13 +10,12 @@ type PageHeaderProps = {
 
 export function PageHeader({
   breadcrumbs,
-  compact = false,
   description,
   eyebrow,
   title,
 }: PageHeaderProps) {
   return (
-    <header className={styles.pageHeader} data-compact={compact}>
+    <header className={styles.pageHeader}>
       {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
       {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
       <h1 className={styles.title}>{title}</h1>
