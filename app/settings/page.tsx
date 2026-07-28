@@ -13,7 +13,10 @@ export const metadata: Metadata = {
 export default function SettingsPage() {
   return (
     <>
-      <PageHeader title="Settings" />
+      <PageHeader
+        breadcrumbs={[{ href: "/", label: "Home" }, { label: "Settings" }]}
+        title="Settings"
+      />
 
       <ContentPanel title="Preferences">
         <ThemeSelector />

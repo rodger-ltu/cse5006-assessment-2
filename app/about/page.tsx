@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader title="About TONDAW" />
+      <PageHeader
+        breadcrumbs={[{ href: "/", label: "Home" }, { label: "About" }]}
+        title="About TONDAW"
+      />
 
       <ContentPanel title="Assessment scope">
         <p>

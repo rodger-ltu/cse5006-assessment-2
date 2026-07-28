@@ -40,7 +40,10 @@ export default async function FeedsPage({ searchParams }: FeedsPageProps) {
 
   return (
     <>
-      <PageHeader title="Announcement feed" />
+      <PageHeader
+        breadcrumbs={[{ href: "/", label: "Home" }, { label: "Feeds" }]}
+        title="Announcement feed"
+      />
 
       <FeedFilters activeFilter={selectedFilter} counts={counts} />
       <AnnouncementFeed
