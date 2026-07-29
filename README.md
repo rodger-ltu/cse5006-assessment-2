@@ -60,3 +60,7 @@ database or provide backend APIs. The later project stage can replace the
 sample data while retaining the current component interface.
 
 Created by Rodger Herbert, student number 22838962.
+
+## GitHub repository
+
+https://github.com/rodger-ltu/cse5006-assessment-1
