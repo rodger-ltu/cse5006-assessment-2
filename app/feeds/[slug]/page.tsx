@@ -3,11 +3,8 @@ import { notFound } from "next/navigation";
 
 import { AnnouncementDetail } from "@/components/feed/AnnouncementDetail";
 import { PageHeader } from "@/components/layout/PageHeader";
-import {
-  announcements,
-  getAnnouncementBySlug,
-  type AnnouncementReturnContext,
-} from "@/data/announcements";
+import type { AnnouncementReturnContext } from "@/data/announcements";
+import { getAnnouncementBySlug } from "@/lib/announcementRepository";
 
 type AnnouncementPageProps = {
   params: Promise<{ slug: string }>;
@@ -40,19 +37,13 @@ function getReturnContext(
     : "all";
 }
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return announcements.map((announcement) => ({
-    slug: announcement.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: AnnouncementPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const announcement = getAnnouncementBySlug(slug);
+  const announcement = await getAnnouncementBySlug(slug);
 
   return {
     title: announcement?.title ?? "Announcement not found",
@@ -64,7 +55,7 @@ export default async function AnnouncementPage({
   searchParams,
 }: AnnouncementPageProps) {
   const { slug } = await params;
-  const announcement = getAnnouncementBySlug(slug);
+  const announcement = await getAnnouncementBySlug(slug);
   const returnContext = getReturnContext((await searchParams).from);
   const returnDestination = returnDestinations[returnContext];
 
