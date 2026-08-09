@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Feed {
+  id            Int             @id @default(autoincrement())
+  name          String
+  slug          String          @unique
+  description   String
+  siteUrl       String
+  feedUrl       String          @unique
+  sourceGroup   String
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  announcements Announcement[]
+  requests      RequestMetric[]
+}
+
+model Author {
+  id            Int            @id @default(autoincrement())
+  name          String
+  email         String?        @unique
+  createdAt     DateTime       @default(now())
+  announcements Announcement[]
+}
+
+model Announcement {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  summary     String
+  content     String
+  category    String
+  publishedAt DateTime
+  imageUrl    String?
+  linkUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  authorId    Int
+  feedId      Int
+  author      Author   @relation(fields: [authorId], references: [id])
+  feed        Feed     @relation(fields: [feedId], references: [id], onDelete: Cascade)
+
+  @@index([feedId, publishedAt])
+  @@index([authorId])
+}
+
+model RequestMetric {
+  id         Int      @id @default(autoincrement())
+  route      String
+  method     String
+  clientId   String
+  statusCode Int
+  durationMs Int
+  createdAt  DateTime @default(now())
+  feedId     Int?
+  feed       Feed?    @relation(fields: [feedId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([route])
+  @@index([clientId])
+}
