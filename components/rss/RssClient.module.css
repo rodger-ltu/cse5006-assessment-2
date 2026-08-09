@@ -1,0 +1,9 @@
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.status { color: var(--text-muted); }
+.button { padding: .7rem 1rem; border: 0; border-radius: .65rem; background: var(--accent); color: var(--on-accent); font-weight: 700; cursor: pointer; }
+.list { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.item { padding: 1.25rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); }
+.item h2 { margin: 0 0 .4rem; color: var(--heading); font-size: 1.15rem; }
+.item p { margin: .35rem 0; }
+.meta { color: var(--text-muted); font-size: .9rem; }
+.error { color: #b42318; }

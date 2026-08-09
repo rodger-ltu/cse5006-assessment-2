@@ -13,6 +13,9 @@ type NavigationProps = {
 const navigationItems = [
   { href: "/", label: "Home" },
   { href: "/feeds", label: "Feeds" },
+  { href: "/rss-client", label: "RSS client" },
+  { href: "/manage", label: "Manage" },
+  { href: "/server", label: "Server" },
   { href: "/about", label: "About" },
   { href: "/settings", label: "Settings" },
 ];
