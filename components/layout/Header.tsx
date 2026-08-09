@@ -22,13 +22,13 @@ export function Header({ isMenuOpen, onMenuToggle }: HeaderProps) {
           <span className={styles.brandText} aria-hidden="true">
             <span>TONDAW</span>
             <span className={styles.brandExpansion}>
-              Timely Online Notices · Distributed Announcement Web
+              Timely Online Notices - Distributed Announcement Web
             </span>
           </span>
         </Link>
 
         <p className={styles.assessmentTitle}>
-          Assessment 1: Frontend Design and Usability
+          Assessment 2: Backend APIs, Database and Docker
         </p>
 
         <button
