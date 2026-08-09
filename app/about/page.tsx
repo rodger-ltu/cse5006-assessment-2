@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { PageHeader } from "@/components/layout/PageHeader";
 
-import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "About",
@@ -34,20 +33,10 @@ export default function AboutPage() {
         </p>
       </ContentPanel>
 
-      <ContentPanel title="Assessment video">
-        <video
-          className={styles.video}
-          controls
-          preload="metadata"
-          aria-label="TONDAW Assessment 1 demonstration video"
-        >
-          <source src="/assets/tondaw-assessment-video.mp4" type="video/mp4" />
-          Your browser does not support embedded video.
-        </video>
+      <ContentPanel title="Assessment 2 development">
         <p>
-          <a href="/assets/tondaw-assessment-video.mp4">
-            Open the assessment video in a new tab
-          </a>
+          Assessment 2 extends the TONDAW frontend with database persistence,
+          CRUD APIs, RSS services, automated testing, Docker, and AWS deployment.
         </p>
       </ContentPanel>
     </>

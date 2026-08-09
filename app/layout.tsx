@@ -7,11 +7,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "TONDAW",
-    template: "%s | TONDAW",
+    default: "TONDAW | Assessment 2",
+    template: "%s | TONDAW Assessment 2",
   },
   description:
-    "Assessment 1 frontend for organising university announcements through an RSS-to-LMS workflow.",
+    "CSE5006 Assessment 2 foundation for a database-backed RSS announcement platform.",
 };
 
 export default function RootLayout({

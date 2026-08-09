@@ -1,66 +1,51 @@
-# TONDAW
+# TONDAW — CSE5006 Assessment 2
 
-TONDAW (Timely Online Notices — Distributed Announcement Web) is a frontend
-prototype that brings announcements from university subjects and services into
-one clear, scannable feed. It was created for CSE5006 Assessment 1 and uses
-sample TypeScript data in place of the RSS server planned for Assessment 2.
+TONDAW stands for Timely Online Notices — Distributed Announcement Web.
 
-## Technology
+This Assessment 2 project extends the frontend prototype developed for Assessment 1 into a database-backed RSS announcement platform.
 
-- Next.js App Router
-- React
-- TypeScript
-- CSS Modules and shared CSS theme variables
-- Browser `localStorage` for interface preferences
+## Starting point
 
-## Run the project
+The initial codebase contains the Assessment 1 frontend:
 
-Install dependencies after cloning the repository:
+- Home dashboard
+- Announcement feeds and filtering
+- Announcement details
+- Responsive navigation
+- Display preferences
+- Sample TypeScript announcement data
 
-```powershell
-npm install
-```
+Assessment 2 functionality will be introduced and tested incrementally.
 
-Start the development server:
+## Planned Assessment 2 functionality
 
-```powershell
-npm run dev
-```
+- Prisma database access
+- SQLite persistent storage
+- Feed, author and announcement models
+- Announcement and feed CRUD APIs
+- Announcement management interface
+- RSS 2.0 server output
+- RSS client integration
+- Health and request-count endpoints
+- Automated and end-to-end testing
+- Docker containerisation
+- AWS EC2 deployment
 
-Open [http://localhost:3000](http://localhost:3000).
+## Development workflow
 
-## Quality checks
+Each component follows the same workflow:
 
-```powershell
-npm run lint
-npm run build
-```
+1. Understand the requirement.
+2. Implement the component locally.
+3. Test the component.
+4. Review the Git changes.
+5. Commit and push the completed chunk.
+6. Record evidence for final verification.
+7. Deploy the completed application through Docker on AWS.
 
-## Main features
+## Local development
 
-- Reusable React components for the application shell, feed and preferences
-- Home, Feeds, About, Settings and dynamic announcement-detail pages
-- Day, Night, Ocean and Terminal themes
-- Selectable top or side navigation with a responsive hamburger menu
-- Saved theme, navigation and welcome-guide preferences
-- Typed sample announcements ready to be replaced by Assessment 2 API data
-- Keyboard navigation, semantic landmarks, breadcrumbs and visible focus states
+Install the locked dependencies:
 
-## Project structure
-
-- `app/` — routes, page metadata and global theme variables
-- `components/` — reusable content, feed, layout and preference components
-- `data/` — typed frontend sample announcements
-- `docs/` — staged development decisions for the written and video justification
-
-## Assessment scope
-
-Assessment 1 is frontend only. It does not process live RSS feeds, use a
-database or provide backend APIs. The later project stage can replace the
-sample data while retaining the current component interface.
-
-Created by Rodger Herbert, student number 22838962.
-
-## GitHub repository
-
-https://github.com/rodger-ltu/cse5006-assessment-1
+```bash
+npm ci
