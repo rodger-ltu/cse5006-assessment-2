@@ -1,11 +1,14 @@
 import { OtherAnnouncementsPanel } from "@/components/feed/OtherAnnouncementsPanel";
 import { HomePrimaryContent } from "@/components/home/HomePrimaryContent";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { announcements } from "@/data/announcements";
+import { getAnnouncements } from "@/lib/announcementRepository";
 
 import styles from "./page.module.css";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const announcements = await getAnnouncements();
   const currentSubjectAnnouncement = announcements.find(
     (announcement) => announcement.sourceGroup === "current",
   );

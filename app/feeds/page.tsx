@@ -3,15 +3,14 @@ import type { Metadata } from "next";
 import { AnnouncementFeed } from "@/components/feed/AnnouncementFeed";
 import { FeedFilters } from "@/components/feed/FeedFilters";
 import { PageHeader } from "@/components/layout/PageHeader";
-import {
-  announcements,
-  getAnnouncementsByFilter,
-  type FeedFilter,
-} from "@/data/announcements";
+import type { FeedFilter } from "@/data/announcements";
+import { getAnnouncements } from "@/lib/announcementRepository";
 
 export const metadata: Metadata = {
   title: "Feeds",
 };
+
+export const dynamic = "force-dynamic";
 
 type FeedsPageProps = {
   searchParams: Promise<{ filter?: string | string[] }>;
@@ -31,11 +30,14 @@ function getSelectedFilter(value: string | string[] | undefined): FeedFilter {
 
 export default async function FeedsPage({ searchParams }: FeedsPageProps) {
   const selectedFilter = getSelectedFilter((await searchParams).filter);
-  const filteredAnnouncements = getAnnouncementsByFilter(selectedFilter);
+  const [filteredAnnouncements, allAnnouncements] = await Promise.all([
+    getAnnouncements(selectedFilter),
+    getAnnouncements(),
+  ]);
   const counts = {
-    all: announcements.length,
-    current: getAnnouncementsByFilter("current").length,
-    other: getAnnouncementsByFilter("other").length,
+    all: allAnnouncements.length,
+    current: allAnnouncements.filter((item) => item.sourceGroup === "current").length,
+    other: allAnnouncements.filter((item) => item.sourceGroup === "other").length,
   };
 
   return (

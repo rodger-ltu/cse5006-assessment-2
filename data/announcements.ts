@@ -3,6 +3,7 @@ export type FeedFilter = "all" | AnnouncementSourceGroup;
 export type AnnouncementReturnContext = FeedFilter | "home";
 
 export type Announcement = {
+  id?: number;
   author: string;
   category: string;
   content: string[];
@@ -12,6 +13,8 @@ export type Announcement = {
   sourceGroup: AnnouncementSourceGroup;
   summary: string;
   title: string;
+  imageUrl?: string;
+  linkUrl?: string;
 };
 
 // Frontend-only sample data. Assessment 2 can replace this array with API data.
