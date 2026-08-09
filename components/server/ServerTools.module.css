@@ -1,0 +1,7 @@
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.panel { padding: 1.4rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); }
+.panel h2 { margin: 0 0 .75rem; color: var(--heading); font-size: 1.1rem; }
+.value { margin: 0; color: var(--accent-strong); font-size: 1.8rem; font-weight: 700; }
+.links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+.links a { color: var(--accent-strong); font-weight: 700; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
