@@ -1,0 +1,12 @@
+services:
+  tondaw:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "file:/app/data/tondaw.db"
+    volumes:
+      - tondaw-data:/app/data
+
+volumes:
+  tondaw-data:
