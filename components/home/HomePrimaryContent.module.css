@@ -37,3 +37,42 @@
   color: var(--text-muted);
   font-size: 0.82rem;
 }
+
+.currentList {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.currentItem {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.currentTitleLink {
+  color: var(--accent-strong);
+  font-weight: 700;
+  text-underline-offset: 0.2em;
+}
+
+.currentDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.currentTitleLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}

@@ -33,6 +33,35 @@ export async function PUT(request: Request, context: RouteContext<"/api/announce
 
   try {
     const input = parseAnnouncementInput(await request.json());
+    const [existingRecord, feed] = await Promise.all([
+      prisma.announcement.findUnique({ where: { id } }),
+      prisma.feed.findUnique({ where: { id: input.feedId } }),
+    ]);
+
+    if (!existingRecord) {
+      await recordRequest({
+        request,
+        route: "/api/announcements/[id]",
+        statusCode: 404,
+        startedAt,
+      });
+      return errorResponse("NOT_FOUND", "Announcement not found.", 404);
+    }
+
+    if (!feed) {
+      await recordRequest({
+        request,
+        route: "/api/announcements/[id]",
+        statusCode: 404,
+        startedAt,
+      });
+      return errorResponse(
+        "FEED_NOT_FOUND",
+        "The selected feed does not exist.",
+        404,
+      );
+    }
+
     const author = await getOrCreateAuthor(input);
     const record = await prisma.announcement.update({
       where: { id },
@@ -44,7 +73,7 @@ export async function PUT(request: Request, context: RouteContext<"/api/announce
         publishedAt: new Date(input.publishedAt),
         imageUrl: input.imageUrl,
         linkUrl: input.linkUrl,
-        feedId: input.feedId,
+        feedId: feed.id,
         authorId: author.id,
       },
       include: { author: true, feed: true },

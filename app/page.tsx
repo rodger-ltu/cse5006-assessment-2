@@ -9,16 +9,12 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const announcements = await getAnnouncements();
-  const currentSubjectAnnouncement = announcements.find(
+  const currentSubjectAnnouncements = announcements.filter(
     (announcement) => announcement.sourceGroup === "current",
   );
   const otherAnnouncements = announcements.filter(
     (announcement) => announcement.sourceGroup === "other",
   );
-
-  if (!currentSubjectAnnouncement) {
-    return null;
-  }
 
   return (
     <>
@@ -26,7 +22,7 @@ export default async function HomePage() {
 
       <div className={styles.homeLayout}>
         <HomePrimaryContent
-          currentSubjectAnnouncement={currentSubjectAnnouncement}
+          currentSubjectAnnouncements={currentSubjectAnnouncements}
         />
 
         <OtherAnnouncementsPanel announcements={otherAnnouncements} />

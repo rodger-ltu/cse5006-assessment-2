@@ -4,7 +4,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 
 import styles from "./AnnouncementManager.module.css";
 
-type Feed = { id: number; name: string };
+type Feed = { id: number; name: string; sourceGroup: "current" | "other" };
 type Notice = {
   id: number; title: string; summary: string; content: string; category: string;
   publishedAt: string; author: { name: string; email?: string | null }; feed: Feed;
@@ -70,7 +70,7 @@ export function AnnouncementManager() {
             </label>
           ))}
           <label className={styles.field}>Publication date<input required type="date" value={form.publishedAt} onChange={(event) => setForm({ ...form, publishedAt: event.target.value })} /></label>
-          <label className={styles.field}>Feed<select required value={form.feedId} onChange={(event) => setForm({ ...form, feedId: event.target.value })}>{feeds.map((feed) => <option key={feed.id} value={feed.id}>{feed.name}</option>)}</select></label>
+          <label className={styles.field}>Feed<select required value={form.feedId} onChange={(event) => setForm({ ...form, feedId: event.target.value })}>{feeds.map((feed) => <option key={feed.id} value={feed.id}>{feed.name} — {feed.sourceGroup === "current" ? "Current subject" : "Other subject or service"}</option>)}</select></label>
           <div className={styles.actions}><button className={styles.button} type="submit">{editingId ? "Save changes" : "Publish"}</button>{editingId && <button className={`${styles.button} ${styles.secondary}`} onClick={resetForm} type="button">Cancel</button>}</div>
         </form>
         <p className={styles.message} aria-live="polite">{message}</p>

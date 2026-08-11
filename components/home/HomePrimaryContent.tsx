@@ -5,13 +5,14 @@ import Link from "next/link";
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { AnnouncementCard } from "@/components/feed/AnnouncementCard";
 import { FeedPanel } from "@/components/feed/FeedPanel";
+import { formatAnnouncementDate } from "@/components/feed/announcementDate";
 import { usePreferences } from "@/components/preferences/PreferencesProvider";
 import type { Announcement } from "@/data/announcements";
 
 import styles from "./HomePrimaryContent.module.css";
 
 type HomePrimaryContentProps = {
-  currentSubjectAnnouncement: Announcement;
+  currentSubjectAnnouncements: Announcement[];
 };
 
 const guideLinks = [
@@ -25,9 +26,11 @@ const guideLinks = [
 ];
 
 export function HomePrimaryContent({
-  currentSubjectAnnouncement,
+  currentSubjectAnnouncements,
 }: HomePrimaryContentProps) {
   const { dismissWelcomeGuide, isWelcomeGuideDismissed } = usePreferences();
+  const primaryAnnouncement = currentSubjectAnnouncements[0];
+  const additionalAnnouncements = currentSubjectAnnouncements.slice(1, 5);
 
   if (isWelcomeGuideDismissed) {
     return (
@@ -36,12 +39,43 @@ export function HomePrimaryContent({
         headingId="current-subject-title"
         viewAllHref="/feeds?filter=current"
       >
-        <AnnouncementCard
-          announcement={currentSubjectAnnouncement}
-          embedded
-          returnContext="home"
-          showBackAction={false}
-        />
+        {primaryAnnouncement ? (
+          <>
+            <AnnouncementCard
+              announcement={primaryAnnouncement}
+              embedded
+              returnContext="home"
+              showBackAction={false}
+            />
+            {additionalAnnouncements.length > 0 && (
+              <ol className={styles.currentList}>
+                {additionalAnnouncements.map((announcement) => (
+                  <li className={styles.currentItem} key={announcement.slug}>
+                    <Link
+                      className={styles.currentTitleLink}
+                      href={`/feeds/${announcement.slug}?from=home`}
+                    >
+                      {announcement.title}
+                    </Link>
+                    <p className={styles.currentDetails}>
+                      <time dateTime={announcement.publishedAt}>
+                        {formatAnnouncementDate(
+                          announcement.publishedAt,
+                          "compact",
+                        )}
+                      </time>
+                      <span>{announcement.author}</span>
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </>
+        ) : (
+          <p className={styles.emptyState}>
+            No current-subject announcements have been published yet.
+          </p>
+        )}
       </FeedPanel>
     );
   }
