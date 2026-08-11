@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ContentPanel } from "@/components/content/ContentPanel";
 import { PageHeader } from "@/components/layout/PageHeader";
 
-
 export const metadata: Metadata = {
   title: "About",
 };
@@ -16,11 +15,10 @@ export default function AboutPage() {
         title="About TONDAW"
       />
 
-      <ContentPanel title="Assessment scope">
+      <ContentPanel title="Assessment 2 scope">
         <p>
-          This stage is frontend only. It uses sample announcement content so
-          the navigation, layout and usability can be evaluated before backend
-          RSS processing is introduced in Assessment 2.
+          TONDAW is a full-stack, database-backed RSS announcement platform
+          developed for CSE5006 Assessment 2.
         </p>
         <p>
           <strong>TONDAW</strong> stands for Timely Online Notices —
@@ -33,10 +31,24 @@ export default function AboutPage() {
         </p>
       </ContentPanel>
 
-      <ContentPanel title="Assessment 2 development">
+      <ContentPanel title="How the system works">
         <p>
-          Assessment 2 extends the TONDAW frontend with database persistence,
-          CRUD APIs, RSS services, automated testing, Docker, and AWS deployment.
+          Announcements, feeds and authors are stored in a SQLite database
+          managed through Prisma. Next.js API routes provide CRUD operations,
+          health information, request metrics and database statistics.
+        </p>
+        <p>
+          The RSS Server converts database announcements into RSS XML. The RSS
+          Client requests that feed, parses the XML and displays the returned
+          announcements through the TONDAW interface.
+        </p>
+      </ContentPanel>
+
+      <ContentPanel title="Deployment">
+        <p>
+          The application runs inside a Docker container on an AWS EC2 server.
+          A Docker named volume stores the SQLite database so its records survive
+          container replacement and restart.
         </p>
       </ContentPanel>
     </>
