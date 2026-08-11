@@ -1,51 +1,41 @@
 # TONDAW — CSE5006 Assessment 2
 
-TONDAW stands for Timely Online Notices — Distributed Announcement Web.
+TONDAW stands for **Timely Online Notices — Distributed Announcement Web**.
 
-This Assessment 2 project extends the frontend prototype developed for Assessment 1 into a database-backed RSS announcement platform.
+This project extends the Assessment 1 frontend prototype into a full-stack, database-backed RSS announcement platform. It was developed for CSE5006 Cloud-Based Web Application Assessment 2.
 
-## Starting point
+**Student:** Rodger Herbert
 
-The initial codebase contains the Assessment 1 frontend:
+**Student ID:** 22838962
 
-- Home dashboard
-- Announcement feeds and filtering
-- Announcement details
-- Responsive navigation
-- Display preferences
-- Sample TypeScript announcement data
+**Repository:** https://github.com/rodger-ltu/cse5006-assessment-2
 
-Assessment 2 functionality will be introduced and tested incrementally.
+## Implemented functionality
 
-## Planned Assessment 2 functionality
+- Responsive Next.js and React interface
+- SQLite database managed through Prisma ORM
+- Database models for feeds, announcements, authors and request metrics
+- CRUD APIs for feeds and announcements
+- Feed and announcement management interface
+- RSS server that generates RSS XML
+- RSS client that retrieves and displays RSS content
+- Health, request-count and database-statistics APIs
+- Persistent Docker storage using a named volume
+- Docker Compose deployment
+- Deployment and testing on an AWS EC2 instance
 
-- Prisma database access
-- SQLite persistent storage
-- Feed, author and announcement models
-- Announcement and feed CRUD APIs
-- Announcement management interface
-- RSS 2.0 server output
-- RSS client integration
-- Health and request-count endpoints
-- Automated and end-to-end testing
-- Docker containerisation
-- AWS EC2 deployment
+## System architecture
 
-## Development workflow
+The application follows this general flow:
 
-Each component follows the same workflow:
-
-1. Understand the requirement.
-2. Implement the component locally.
-3. Test the component.
-4. Review the Git changes.
-5. Commit and push the completed chunk.
-6. Record evidence for final verification.
-7. Deploy the completed application through Docker on AWS.
-
-## Local development
-
-Install the locked dependencies:
-
-```bash
-npm ci
+```text
+Browser interface
+       |
+       v
+Next.js pages and API routes
+       |
+       v
+Prisma ORM
+       |
+       v
+SQLite database
