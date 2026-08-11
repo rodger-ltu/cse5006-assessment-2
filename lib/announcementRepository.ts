@@ -32,7 +32,11 @@ export async function getAnnouncements(filter: FeedFilter = "all") {
     where:
       filter === "all" ? undefined : { feed: { sourceGroup: filter } },
     include: { author: true, feed: true },
-    orderBy: { publishedAt: "desc" },
+    orderBy: [
+      { publishedAt: "desc" },
+      { createdAt: "desc" },
+      { id: "desc" },
+    ],
   });
 
   return records.map(toAnnouncement);
