@@ -51,20 +51,37 @@ export function HomePrimaryContent({
               <ol className={styles.currentList}>
                 {additionalAnnouncements.map((announcement) => (
                   <li className={styles.currentItem} key={announcement.slug}>
-                    <Link
-                      className={styles.currentTitleLink}
-                      href={`/feeds/${announcement.slug}?from=home`}
-                    >
-                      {announcement.title}
-                    </Link>
-                    <p className={styles.currentDetails}>
+                    <div className={styles.currentMeta}>
+                      <span className={styles.currentCategory}>
+                        {announcement.category}
+                      </span>
                       <time dateTime={announcement.publishedAt}>
                         {formatAnnouncementDate(
                           announcement.publishedAt,
                           "compact",
                         )}
                       </time>
+                    </div>
+                    <h3 className={styles.currentHeading}>
+                      <Link
+                        className={styles.currentTitleLink}
+                        href={`/feeds/${announcement.slug}?from=home`}
+                      >
+                        {announcement.title}
+                      </Link>
+                    </h3>
+                    <p className={styles.currentSummary}>
+                      {announcement.summary}
+                    </p>
+                    <p className={styles.currentFooter}>
                       <span>{announcement.author}</span>
+                      <Link
+                        aria-label={`Read the complete announcement: ${announcement.title}`}
+                        className={styles.currentReadMore}
+                        href={`/feeds/${announcement.slug}?from=home`}
+                      >
+                        Read more →
+                      </Link>
                     </p>
                   </li>
                 ))}
