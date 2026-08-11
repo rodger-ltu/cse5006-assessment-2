@@ -44,15 +44,19 @@ export async function POST(request: Request) {
 
   try {
     const input = parseAnnouncementInput(await request.json());
-    const [feed, author] = await Promise.all([
-      prisma.feed.findUnique({ where: { id: input.feedId } }),
-      getOrCreateAuthor(input),
-    ]);
+    const feed = await prisma.feed.findUnique({ where: { id: input.feedId } });
 
     if (!feed) {
+      await recordRequest({
+        request,
+        route: "/api/announcements",
+        statusCode: 404,
+        startedAt,
+      });
       return errorResponse("FEED_NOT_FOUND", "The selected feed does not exist.", 404);
     }
 
+    const author = await getOrCreateAuthor(input);
     const record = await prisma.announcement.create({
       data: {
         slug: createSlug(input.slug ?? input.title),

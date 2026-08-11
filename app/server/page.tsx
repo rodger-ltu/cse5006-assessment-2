@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ServerPage() {
   const [feeds, announcements, requests] = await Promise.all([
-    prisma.feed.count(),
+    prisma.feed.count({ where: { isActive: true } }),
     prisma.announcement.count(),
     prisma.requestMetric.count(),
   ]);

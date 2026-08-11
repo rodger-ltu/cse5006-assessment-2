@@ -1,3 +1,4 @@
+import { errorResponse } from "@/lib/apiResponse";
 import { prisma } from "@/lib/prisma";
 import { recordRequest } from "@/lib/requestMetrics";
 
@@ -14,10 +15,27 @@ export async function GET(request: Request) {
   const startedAt = Date.now();
   const requestedFeed = new URL(request.url).searchParams.get("feed");
   const feed = requestedFeed
-    ? await prisma.feed.findUnique({ where: { slug: requestedFeed } })
+    ? await prisma.feed.findFirst({
+        where: { slug: requestedFeed, isActive: true },
+      })
     : null;
+
+  if (requestedFeed && !feed) {
+    await recordRequest({
+      request,
+      route: "/api/rss",
+      statusCode: 404,
+      startedAt,
+    });
+    return errorResponse(
+      "FEED_NOT_FOUND",
+      "The requested RSS feed does not exist or is inactive.",
+      404,
+    );
+  }
+
   const announcements = await prisma.announcement.findMany({
-    where: feed ? { feedId: feed.id } : undefined,
+    where: feed ? { feedId: feed.id } : { feed: { isActive: true } },
     include: { author: true, feed: true },
     orderBy: { publishedAt: "desc" },
   });
@@ -46,7 +64,13 @@ ${items}
 </channel>
 </rss>`;
 
-  await recordRequest({ request, route: "/api/rss", statusCode: 200, startedAt, feedId: feed?.id });
+  await recordRequest({
+    request,
+    route: "/api/rss",
+    statusCode: 200,
+    startedAt,
+    feedId: feed?.id,
+  });
   return new Response(xml, {
     headers: { "Content-Type": "application/rss+xml; charset=utf-8" },
   });
