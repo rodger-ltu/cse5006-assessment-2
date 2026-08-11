@@ -37,7 +37,11 @@ export async function GET(request: Request) {
   const announcements = await prisma.announcement.findMany({
     where: feed ? { feedId: feed.id } : { feed: { isActive: true } },
     include: { author: true, feed: true },
-    orderBy: { publishedAt: "desc" },
+    orderBy: [
+      { publishedAt: "desc" },
+      { createdAt: "desc" },
+      { id: "desc" },
+    ],
   });
   const origin = new URL(request.url).origin;
   const channelTitle = feed?.name ?? "TONDAW University Announcements";

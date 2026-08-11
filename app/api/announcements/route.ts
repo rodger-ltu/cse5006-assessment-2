@@ -17,7 +17,11 @@ export async function GET(request: Request) {
       ...(feedSlug ? { feed: { slug: feedSlug } } : {}),
     },
     include: { author: true, feed: true },
-    orderBy: { publishedAt: "desc" },
+    orderBy: [
+      { publishedAt: "desc" },
+      { createdAt: "desc" },
+      { id: "desc" },
+    ],
   });
 
   const data = records.map((record) => ({
