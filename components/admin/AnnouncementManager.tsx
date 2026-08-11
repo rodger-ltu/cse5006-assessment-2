@@ -75,9 +75,18 @@ export function AnnouncementManager() {
         </form>
         <p className={styles.message} aria-live="polite">{message}</p>
       </section>
-      <section className={styles.panel} aria-labelledby="published-title">
+      <section
+        className={`${styles.panel} ${styles.publishedPanel}`}
+        aria-labelledby="published-title"
+      >
         <h2 id="published-title">Published notices</h2>
-        <ul className={styles.list}>{notices.map((notice) => <li className={styles.item} key={notice.id}><h3>{notice.title}</h3><p>{notice.feed.name} · {notice.author.name}</p><div className={styles.actions}><button className={`${styles.button} ${styles.secondary}`} onClick={() => editNotice(notice)} type="button">Edit</button><button className={`${styles.button} ${styles.secondary}`} onClick={() => void deleteNotice(notice.id)} type="button">Delete</button></div></li>)}</ul>
+        <ul
+          aria-label="Published notices"
+          className={styles.list}
+          tabIndex={0}
+        >
+          {notices.map((notice) => <li className={styles.item} key={notice.id}><h3>{notice.title}</h3><p>{notice.feed.name} · {notice.author.name}</p><div className={styles.actions}><button className={`${styles.button} ${styles.secondary}`} onClick={() => editNotice(notice)} type="button">Edit</button><button className={`${styles.button} ${styles.secondary}`} onClick={() => void deleteNotice(notice.id)} type="button">Delete</button></div></li>)}
+        </ul>
       </section>
     </div>
   );
