@@ -55,7 +55,12 @@ export function AnnouncementManager() {
   async function deleteNotice(id: number) {
     if (!window.confirm("Delete this sample announcement?")) return;
     const response = await fetch(`/api/announcements/${id}`, { method: "DELETE" });
-    setMessage(response.ok ? "Notice deleted." : "The notice could not be deleted.");
+    if (!response.ok) {
+      setMessage("The notice could not be deleted.");
+      return;
+    }
+    if (editingId === id) resetForm();
+    else setMessage("");
     await loadData();
   }
 
