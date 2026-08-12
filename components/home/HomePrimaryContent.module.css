@@ -43,7 +43,6 @@
   gap: 0;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--border);
   list-style: none;
 }
 
@@ -54,26 +53,39 @@
   border-bottom: 1px solid var(--border);
 }
 
-.currentMeta,
+.currentHeadingRow,
 .currentFooter {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
   gap: 0.35rem 0.85rem;
   margin: 0;
+}
+
+.currentHeadingRow {
+  align-items: baseline;
+}
+
+.currentFooter {
+  align-items: center;
+}
+
+.currentAuthor,
+.currentDate {
   color: var(--text-muted);
   font-size: 0.82rem;
 }
 
-.currentCategory {
-  color: var(--accent-strong);
-  font-weight: 700;
+.currentAuthor {
+  flex: 0 1 auto;
+  margin-left: auto;
+  text-align: right;
 }
 
 .currentHeading {
+  flex: 1 1 18rem;
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.35;
 }
 

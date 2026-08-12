@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 import { ContentPanel } from "@/components/content/ContentPanel";
-import { AnnouncementCard } from "@/components/feed/AnnouncementCard";
 import { FeedPanel } from "@/components/feed/FeedPanel";
 import { formatAnnouncementDate } from "@/components/feed/announcementDate";
 import { usePreferences } from "@/components/preferences/PreferencesProvider";
@@ -29,8 +28,7 @@ export function HomePrimaryContent({
   currentSubjectAnnouncements,
 }: HomePrimaryContentProps) {
   const { dismissWelcomeGuide, isWelcomeGuideDismissed } = usePreferences();
-  const primaryAnnouncement = currentSubjectAnnouncements[0];
-  const additionalAnnouncements = currentSubjectAnnouncements.slice(1, 5);
+  const visibleAnnouncements = currentSubjectAnnouncements.slice(0, 5);
 
   if (isWelcomeGuideDismissed) {
     return (
@@ -39,55 +37,47 @@ export function HomePrimaryContent({
         headingId="current-subject-title"
         viewAllHref="/feeds?filter=current"
       >
-        {primaryAnnouncement ? (
-          <>
-            <AnnouncementCard
-              announcement={primaryAnnouncement}
-              embedded
-              returnContext="home"
-              showBackAction={false}
-            />
-            {additionalAnnouncements.length > 0 && (
-              <ol className={styles.currentList}>
-                {additionalAnnouncements.map((announcement) => (
-                  <li className={styles.currentItem} key={announcement.slug}>
-                    <div className={styles.currentMeta}>
-                      <span className={styles.currentCategory}>
-                        {announcement.category}
-                      </span>
-                      <time dateTime={announcement.publishedAt}>
-                        {formatAnnouncementDate(
-                          announcement.publishedAt,
-                          "compact",
-                        )}
-                      </time>
-                    </div>
-                    <h3 className={styles.currentHeading}>
-                      <Link
-                        className={styles.currentTitleLink}
-                        href={`/feeds/${announcement.slug}?from=home`}
-                      >
-                        {announcement.title}
-                      </Link>
-                    </h3>
-                    <p className={styles.currentSummary}>
-                      {announcement.summary}
-                    </p>
-                    <p className={styles.currentFooter}>
-                      <span>{announcement.author}</span>
-                      <Link
-                        aria-label={`Read the complete announcement: ${announcement.title}`}
-                        className={styles.currentReadMore}
-                        href={`/feeds/${announcement.slug}?from=home`}
-                      >
-                        Read more →
-                      </Link>
-                    </p>
-                  </li>
-                ))}
-              </ol>
-            )}
-          </>
+        {visibleAnnouncements.length > 0 ? (
+          <ol className={styles.currentList}>
+            {visibleAnnouncements.map((announcement) => (
+              <li className={styles.currentItem} key={announcement.slug}>
+                <div className={styles.currentHeadingRow}>
+                  <h3 className={styles.currentHeading}>
+                    <Link
+                      className={styles.currentTitleLink}
+                      href={`/feeds/${announcement.slug}?from=home`}
+                    >
+                      {announcement.title}
+                    </Link>
+                  </h3>
+                  <span className={styles.currentAuthor}>
+                    {announcement.author}
+                  </span>
+                </div>
+                <p className={styles.currentSummary}>
+                  {announcement.summary}
+                </p>
+                <p className={styles.currentFooter}>
+                  <Link
+                    aria-label={`Read the complete announcement: ${announcement.title}`}
+                    className={styles.currentReadMore}
+                    href={`/feeds/${announcement.slug}?from=home`}
+                  >
+                    Read more →
+                  </Link>
+                  <time
+                    className={styles.currentDate}
+                    dateTime={announcement.publishedAt}
+                  >
+                    {formatAnnouncementDate(
+                      announcement.publishedAt,
+                      "compact",
+                    )}
+                  </time>
+                </p>
+              </li>
+            ))}
+          </ol>
         ) : (
           <p className={styles.emptyState}>
             No current-subject announcements have been published yet.
